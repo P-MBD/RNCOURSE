@@ -2,7 +2,8 @@ import { Pressable, View, Text, StyleSheet} from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 function ExpenseItem({description, amount, date}){
-return <Pressable>
+    function expensePressHandler(){}
+return <Pressable onPress={expensePressHandler}>
         <View style={styles.expenseItem}>
             <View>
                 <Text style={[styles.textBase, styles.description]}>{description}</Text>
