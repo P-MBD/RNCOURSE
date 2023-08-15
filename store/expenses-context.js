@@ -23,19 +23,19 @@ const DUMMY_EXPENSES = [
     id: 'e4',
     description: 'A book',
     amount: 14.99,
-    date: new Date('2023-02-19'),
+    date: new Date('2023-08-11'),
   },
   {
     id: 'e5',
     description: 'Another book',
     amount: 18.59,
-    date: new Date('2023-08-14'),
+    date: new Date('2023-08-15'),
   },
   {
     id: 'e6',
     description: 'A pair of trousers',
     amount: 89.29,
-    date: new Date('2023-08-11'),
+    date: new Date('2023-08-10'),
   },
   {
     id: 'e7',
@@ -107,7 +107,11 @@ function ExpensesContextProvider({ children }) {
     updateExpense: updateExpense,
   };
 
-  return <ExpensesContext.Provider value={value}>{children}</ExpensesContext.Provider>;
+  return (
+    <ExpensesContext.Provider value={value}>
+      {children}
+    </ExpensesContext.Provider>
+  );
 }
 
 export default ExpensesContextProvider;
