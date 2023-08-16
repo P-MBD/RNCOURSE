@@ -1,11 +1,12 @@
-import {View, TextInput,Text } from 'react-native'
-function input({label,textInputConfig }){
+import { Text, TextInput, View } from 'react-native';
 
-return(
-<View>
-    <Text>{label}</Text>
-    <TextInput {...textInputConfig} />
-</View>
-    );
+function Input({ label, textInputConfig }) {
+  return (
+    <View>
+      <Text>{label}</Text>
+      <TextInput {...textInputConfig} />
+    </View>
+  );
 }
-export default input;
+
+export default Input;
