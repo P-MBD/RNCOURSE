@@ -1,32 +1,47 @@
-import { View,Text, StyleSheet } from 'react-native';
-import { GlobalStyles } from '../../constants/styles';
+import { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
 import Input from './Input';
 
 function ExpenseForm() {
-  function amountChangedHandler() {}
-
+const [inputValues, setInputValues]= useState({
+  amount:'',
+  date:'',
+  description:'',
+});
+function inputChangeHandler(inputIdentifier,enteredValue){
+  setInputValue((curInputValues)=> {
+    return{
+      ...curInputValues,
+      [inputIdentifier]:'enteredValue'
+    };
+  });
+}
   return (
-    <View>
+    <View style={styles.form}>
       <Text style={styles.title}>Your Expense</Text>
-      <View style={styles.inputRows}>
-      <Input
-        style= {styles.rowInput}
-        label="Amount"
-        textInputConfig={{
-          keyboardType: 'decimal-pad',
-          onChangeText: amountChangedHandler,
-        }}
-      />
-      <Input
-       style= {styles.rowInput}
-        label="Date"
-        textInputConfig={{
-          placeholder: 'YYYY-MM-DD',
-          maxLength: 10,
-          onChangeText: () => {},
-        }}
-      />
-      </View>  
+      <View style={styles.inputsRow}>
+        <Input
+          style={styles.rowInput}
+          label="Amount"
+          textInputConfig={{
+            keyboardType: 'decimal-pad',
+            onChangeText: inputChangeHandler.bind(this,'amount') ,
+            value:inputValues.amount,
+          }}
+        />
+        <Input
+          style={styles.rowInput}
+          label="Date"
+          textInputConfig={{
+            placeholder: 'YYYY-MM-DD',
+            maxLength: 10,
+            onChangeText: inputChangeHandler.bind(this,'description') ,
+            value:inputValues.description,
+          
+          }}
+        />
+      </View>
       <Input
         label="Description"
         textInputConfig={{
@@ -41,22 +56,22 @@ function ExpenseForm() {
 
 export default ExpenseForm;
 
-const styles= StyleSheet.create({
-  form:{
-    marginTop:80,
+const styles = StyleSheet.create({
+  form: {
+    marginTop: 40,
   },
-  title:{
-    fontSize:24,
-    fontWeight:'bold',
-    color:'white',
-    marginVertical:24,
-    textAlign:'center',
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginVertical: 24,
+    textAlign: 'center',
   },
-  inputRows:{
-    flexDirection:'row',
-    justifyContent:'space-between',
+  inputsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  rowInput:{
-    flex:1,
-  }
-})
+  rowInput: {
+    flex: 1,
+  },
+});
